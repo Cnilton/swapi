@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import api from "../../services/api";
 import Lottie from "react-lottie";
 import animationData from "../../assets/animations/loading.json";
+import { t } from "../../functions/Planets";
 import { Container, Planet, Info, Next, Box } from "./style";
 
 function App() {
@@ -16,10 +16,8 @@ function App() {
   async function generatePlanet() {
     setAnimation(true);
     // Math.random() * 61, because the max length of Planets is 61
-    const random = Math.random();
-    const number = parseInt(random > 0 ? random * 61 : 1);
-    const resp = await fetch(`${api}/planets/${number}/`);
-    const response = await resp.json();
+    const response = await t();
+    console.log(response);
     setPlanet(response);
     setAnimation(false);
   }
